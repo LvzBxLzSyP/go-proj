@@ -36,7 +36,9 @@ go func() {
 	// read console  
 	reader := bufio.NewReader(os.Stdin)  
 	writer := bufio.NewWriter(inW)  
-
+	
+	writer.WriteString("winetricks -q vcrun2019\n")
+	writer.Flush()
 	writer.WriteString("wine bedrock_server_mod.exe\n")  
 	writer.Flush()  
 
