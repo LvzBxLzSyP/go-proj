@@ -1,0 +1,42 @@
+name: Build Go Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⚙️ 檢出原始碼
+        uses: actions/checkout@v4
+
+      - name: 🛠️ 安裝 Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: 🧪 驗證 Go 環境
+        run: go version
+
+      - name: 🔍 檢查模組依賴
+        run: go mod tidy
+
+      - name: 🧹 格式與編譯檢查
+        run: |
+          go fmt ./...
+          go vet ./...
+
+      - name: 🏗️ 編譯可執行檔（Linux）
+        run: |
+          mkdir -p build
+          GOOS=linux GOARCH=amd64 go build -o build/start_server main.go
+
+      - name: 📦 上傳編譯產物
+        uses: actions/upload-artifact@v4
+        with:
+          name: start_server_linux
+          path: build/start_server
