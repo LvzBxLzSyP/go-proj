@@ -36,10 +36,10 @@ jobs:
       - name: 🏗️ 編譯可執行檔（Linux）
         run: |
           mkdir -p build
-          GOOS=linux GOARCH=amd64 go build -o build/start_server main.go
+          GOOS=linux GOARCH=amd64 go build -o build/lae-ll-launcher main.go
 
       - name: 📦 上傳編譯產物
         uses: actions/upload-artifact@v4
         with:
-          name: start_server_linux
-          path: build/start_server
+          name: launcher_linux
+          path: build/lae-ll-launcher
