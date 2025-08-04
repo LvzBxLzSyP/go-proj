@@ -71,9 +71,6 @@ func main() {
 		cancel()
 	}()
 
-	// 開始讀取使用者輸入並傳送至伺服器（保持互動）
-	reader := bufio.NewReader(os.Stdin)
-
 	for {
 		select {
 		case <-ctx.Done():
