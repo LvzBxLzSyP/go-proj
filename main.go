@@ -37,6 +37,9 @@ go func() {
 	reader := bufio.NewReader(os.Stdin)  
 	writer := bufio.NewWriter(inW)  
 	
+	writer.WriteString("export WINEPREFIX=/home/container/.wine\n")
+	writer.WriteString("wineboot --init\n")
+	writer.Flush()
 	writer.WriteString("winetricks -q vcrun2019\n")
 	writer.Flush()
 	writer.WriteString("wine bedrock_server_mod.exe\n")  

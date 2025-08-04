@@ -23,7 +23,7 @@ jobs:
         run: go version
 
       - name: 初始化
-        run: go mod init start_server
+        run: go mod init lae-ll-launcher
 
       - name: 🔍 檢查模組依賴
         run: go mod tidy
