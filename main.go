@@ -68,6 +68,7 @@ go func() {
 		// }  
 
 	}  
+	process.Signal(os.Kill)  
 	done <- struct{}{}  
 	fmt.Println("伺服器已關閉。")  
 }()  
